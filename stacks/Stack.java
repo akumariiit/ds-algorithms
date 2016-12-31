@@ -29,7 +29,7 @@ public class Stack<T> {
     }
 
     public int getSize() {
-        return top-1;
+        return top;
     }
 
     public void print() {

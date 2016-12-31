@@ -1,58 +1,40 @@
 package stacks;
 
+import java.util.ArrayList;
+
 /**
  * Created by amitkumar on 19/12/16.
  */
-public class Stack {
+public class Stack<T> {
 
-    private int size;
+    private ArrayList<T> stack = new ArrayList<T> ();
 
-    private int[] arr;
+    private int top = 0;
 
-    private int currentIndex;
-
-    public Stack(int size) {
-        this.size = size;
-        currentIndex = -1;
-        arr = new int[size];
+    public void push(T i) {
+        stack.add (top++, i);
     }
 
-    public void push(int i) {
-        if (currentIndex == size) {
-            throw new RuntimeException("Stack if full");
-        }
-        arr[++currentIndex] = i;
+    public T pop() {
+        return stack.remove(--top);
+
     }
 
-    public int pop() {
-        if (currentIndex < 0) {
-            throw new RuntimeException("Stack if empty");
-        }
-        return arr[currentIndex--];
-    }
-
-    public int top() {
-        if (currentIndex < 0) {
-            throw new RuntimeException("Stack if empty");
-        }
-        return arr[currentIndex];
-    }
-
-    public boolean isFull() {
-        return (currentIndex == size - 1);
+    public T top() {
+        return stack.get(top-1);
     }
 
     public boolean isEmpty() {
-        return (currentIndex == -1);
+        return (stack.isEmpty());
     }
 
     public int getSize() {
-        return currentIndex+1;
+        return top-1;
     }
 
     public void print() {
         while (!this.isEmpty()) {
-            long value = this.pop();
+            T value = this.pop();
             System.out.print(value);
             System.out.print(" ");
         }
